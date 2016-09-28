@@ -1,0 +1,33 @@
+{
+  "name": "form-service-backend",
+  "description": "An AWS Lambda-powered service for creating contact forms.",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "DanielRuskin1",
+  "scripts": {
+    "setup": "sh scripts/setup.sh",
+    "deploy": "sh scripts/deploy.sh",
+    "test": "sh scripts/test.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielruskin1/form-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danielruskin1/form-service/issues"
+  },
+  "homepage": "https://github.com/danielruskin1/form-service",
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "fs": "0.0.1-security",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-prompt": "^0.2.0",
+    "gulp-rename": "^1.2.2",
+    "js-yaml": "^3.6.1",
+    "mocha": "^3.0.2",
+    "node-uuid": "^1.4.7",
+    "rewire": "^2.5.2"
+  },
+  "dependencies": {}
+}

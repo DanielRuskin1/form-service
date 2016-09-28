@@ -1,0 +1,26 @@
+# Ignore config files (these contain sensitive env variables)
+config.json
+config.json.*
+serverless.env.yml
+
+# Ignore serverless meta folder
+.serverless
+
+# Ignore compiled assets
+dist/
+
+# Ignore NPM modules, logs
+node_modules
+npm-debug.log
+
+# Integration testing logs
+selenium-debug.log
+test_output
+
+# Ignore API gateway SDK, as this is different for each deployment
+# Don't ignore gitkeep, since we want to include the folder itself
+frontend/client/javascripts/vendor/api_gateway_sdk/
+!frontend/client/javascripts/vendor/api_gateway_sdk/.gitkeep
+
+# OSX folder metadata
+**/.DS_Store

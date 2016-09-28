@@ -1,0 +1,23 @@
+{
+  "name": "form-service-backend-project",
+  "description": "An AWS Lambda-powered service for creating contact forms.",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "keywords": [],
+  "author": "DanielRuskin1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielruskin1/form-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danielruskin1/form-service/issues"
+  },
+  "homepage": "https://github.com/danielruskin1/form-service",
+  "dependencies": {
+    "pg": "^6.1.0",
+    "rollbar": "^0.6.2",
+    "sequelize": "^3.24.1",
+    "async": "^2.0.1",
+    "aws-sdk": "^2.5.3"
+  }
+}

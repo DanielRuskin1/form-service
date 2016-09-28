@@ -1,0 +1,10 @@
+{
+  "Properties": {
+    "Role": {
+      "Fn::GetAtt": [
+        "LambdaSESRole",
+        "Arn"
+      ]
+    }
+  }
+}

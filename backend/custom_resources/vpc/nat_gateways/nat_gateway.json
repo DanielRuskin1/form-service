@@ -1,0 +1,14 @@
+{
+  "Type": "AWS::EC2::NatGateway",
+  "Properties": {
+    "AllocationId": {
+      "Fn::GetAtt" : [
+        "ElasticIP", 
+        "AllocationId"
+      ]
+    },
+    "SubnetId": {
+      "Ref": "IGWNatSubnet"
+    }
+  }
+}

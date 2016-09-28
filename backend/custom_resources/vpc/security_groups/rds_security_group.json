@@ -1,0 +1,25 @@
+{
+  "Type": "AWS::EC2::SecurityGroup",
+  "Properties": {
+    "GroupDescription": "RDS Security Group",
+    "VpcId": {
+      "Ref": "DatabaseAndFunctionVPC"
+    },
+    "SecurityGroupIngress": [
+      {
+        "FromPort": "${database_port}",
+        "ToPort": "${database_port}",
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": {
+          "Ref": "LambdaSecurityGroup" 
+        }
+      }
+    ],
+    "SecurityGroupEgress": [
+      {
+        "CidrIp": "127.0.0.1/32",
+        "IpProtocol": "-1"
+      }
+    ]
+  }
+}

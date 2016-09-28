@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Contact Form Service</title>
+
+    <link rel="stylesheet" href="stylesheets/base.css" />
+  </head>
+  <body>
+    <div id="content"></div>
+
+    <!-- Manually include API Gateway SDK in global namespace; necessary for it to work -->
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="javascripts/vendor/api_gateway_sdk/apigClient.js"></script>
+
+    <script src="javascripts/app.js"></script>
+  </body>
+</html>

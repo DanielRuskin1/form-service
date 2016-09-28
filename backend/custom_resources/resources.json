@@ -1,0 +1,116 @@
+{
+  "CognitoAuthRole": {
+    "$ref": "cognito/auth_role.json"
+  },
+  "CognitoUnAuthRole": {
+    "$ref": "cognito/unauth_role.json"
+  },
+  "CognitoAuthPolicy": {
+    "$ref": "cognito/auth_policy.json"
+  },
+  "CognitoUnAuthPolicy": {
+    "$ref": "cognito/unauth_policy.json"
+  },
+  "processMessagesFunction": {
+    "$ref": "functions/process_messages.json"
+  },
+  "PostMethodApigEventCreatecontactformfunctionContactforms": {
+    "$ref": "methods/create_contact_form.json"
+  },
+  "DeleteMethodApigEventCreatecontactformfunctionContactforms": {
+    "$ref": "methods/delete_contact_form.json"
+  },
+  "GetMethodApigEventCreatecontactformfunctionContactforms": {
+    "$ref": "methods/list_contact_forms.json"
+  },
+  "PostMethodApigEventSendmessagefunctionMessagesSend": {
+    "$ref": "methods/send_message.json"
+  },
+  "RDSInstance": {
+    "$ref": "rds/instances/instance.json"
+  },
+  "RDSSubnetGroup": {
+    "$ref": "rds/subnet_groups/subnet_group.json"
+  },
+  "LambdaSESRole": {
+    "$ref": "ses/role.json"
+  },
+  "LambdaSESPolicy": {
+    "$ref": "ses/policy.json"
+  },
+  "DatabaseAndFunctionVPC": {
+    "$ref": "vpc/database_and_function_vpc.json"
+  },
+  "ElasticIP": {
+    "$ref": "vpc/elastic_ips/elastic_ip.json"
+  },
+  "InternetGatewayAttachment": {
+    "$ref": "vpc/internet_gateway_attachments/internet_gateway_attachment.json"
+  },
+  "InternetGateway": {
+    "$ref": "vpc/internet_gateways/internet_gateway.json"
+  },
+  "NatGateway": {
+    "$ref": "vpc/nat_gateways/nat_gateway.json"
+  },
+  "IGWRouteTable": {
+    "$ref": "vpc/route_tables/igw_route_table.json"
+  },
+  "NATRouteTable": {
+    "$ref": "vpc/route_tables/nat_route_table.json"
+  },
+  "IGWAssociation1": {
+    "$ref": "vpc/route_tables/associations/igw_association_1.json"
+  },
+  "IGWAssociation2": {
+    "$ref": "vpc/route_tables/associations/igw_association_2.json"
+  },
+  "IGWAssociation3": {
+    "$ref": "vpc/route_tables/associations/igw_association_3.json"
+  },
+  "IGWAssociation4": {
+    "$ref": "vpc/route_tables/associations/igw_association_4.json"
+  },
+  "NATAssociation1": {
+    "$ref": "vpc/route_tables/associations/nat_association_1.json"
+  },
+  "NATAssociation2": {
+    "$ref": "vpc/route_tables/associations/nat_association_2.json"
+  },
+  "NATAssociation3": {
+    "$ref": "vpc/route_tables/associations/nat_association_3.json"
+  },
+  "IGWRoute": {
+    "$ref": "vpc/route_tables/routes/igw_route.json"
+  },
+  "NATRoute": {
+    "$ref": "vpc/route_tables/routes/nat_route.json"
+  },
+  "LambdaSecurityGroup": {
+    "$ref": "vpc/security_groups/lambda_security_group.json"
+  },
+  "RDSSecurityGroup": {
+    "$ref": "vpc/security_groups/rds_security_group.json"
+  },
+  "LambdaSubnet1": {
+    "$ref": "vpc/subnets/lambda/lambda_subnet_1.json"
+  },
+  "LambdaSubnet2": {
+    "$ref": "vpc/subnets/lambda/lambda_subnet_2.json"
+  },
+  "LambdaSubnet3": {
+    "$ref": "vpc/subnets/lambda/lambda_subnet_3.json"
+  },
+  "RDSSubnet1": {
+    "$ref": "vpc/subnets/rds/rds_subnet_1.json"
+  },
+  "RDSSubnet2": {
+    "$ref": "vpc/subnets/rds/rds_subnet_2.json"
+  },
+  "RDSSubnet3": {
+    "$ref": "vpc/subnets/rds/rds_subnet_3.json"
+  },
+  "IGWNatSubnet": {
+    "$ref": "vpc/subnets/shared/igw_nat_subnet.json"
+  },
+}

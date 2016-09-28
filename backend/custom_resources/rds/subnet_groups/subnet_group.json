@@ -1,0 +1,17 @@
+{
+  "Type": "AWS::RDS::DBSubnetGroup",
+  "Properties": {
+    "DBSubnetGroupDescription": "Form Service Subnet Group",
+    "SubnetIds": [
+      {
+        "Ref": "RDSSubnet1"
+      },
+      {
+        "Ref": "RDSSubnet2"
+      },
+      {
+        "Ref": "RDSSubnet3"
+      }
+    ]
+  }
+}

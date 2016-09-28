@@ -1,0 +1,17 @@
+{
+  "Type": "AWS::EC2::SecurityGroup",
+  "Properties": {
+    "GroupDescription": "Lambda Security Group",
+    "VpcId": {
+      "Ref": "DatabaseAndFunctionVPC"
+    },
+    "SecurityGroupEgress": [
+      {
+        "CidrIp": "0.0.0.0/0",
+        "FromPort": "-1",
+        "ToPort": "-1",
+        "IpProtocol": "-1"
+      }
+    ]
+  }
+}

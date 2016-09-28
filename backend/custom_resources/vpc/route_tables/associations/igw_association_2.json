@@ -1,0 +1,11 @@
+{
+  "Type": "AWS::EC2::SubnetRouteTableAssociation",
+  "Properties": {
+    "RouteTableId": {
+      "Ref": "IGWRouteTable"
+    },
+    "SubnetId": {
+      "Ref": "RDSSubnet2"
+    },
+  }
+}

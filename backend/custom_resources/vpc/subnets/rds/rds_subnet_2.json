@@ -1,0 +1,17 @@
+{
+  "Type": "AWS::EC2::Subnet",
+  "Properties": {
+    "AvailabilityZone": "us-west-2b",
+    "CidrBlock": "172.30.1.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "RDS Subnet 2"
+      }
+    ],
+    "VpcId": {
+      "Ref": "DatabaseAndFunctionVPC"
+    }
+  }
+}

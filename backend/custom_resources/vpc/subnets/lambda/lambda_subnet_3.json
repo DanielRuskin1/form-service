@@ -1,0 +1,17 @@
+{
+  "Type": "AWS::EC2::Subnet",
+  "Properties": {
+    "AvailabilityZone": "us-west-2c",
+    "CidrBlock": "172.30.5.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "Lambda Subnet 3"
+      }
+    ],
+    "VpcId": {
+      "Ref": "DatabaseAndFunctionVPC"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "Type": "AWS::EC2::SubnetRouteTableAssociation",
+  "Properties": {
+    "RouteTableId": {
+      "Ref": "NATRouteTable"
+    },
+    "SubnetId": {
+      "Ref": "LambdaSubnet2"
+    },
+  }
+}
