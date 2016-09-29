@@ -1,7 +1,7 @@
 "use strict";
 
 const uuid = require("node-uuid");
-const getArg = require("../../get_arg");
+const getArg = require("../../common/get_arg");
 
 // This is a very basic test suite and should be expanded at some point.
 // In particular, we should have:

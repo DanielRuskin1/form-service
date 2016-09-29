@@ -4,7 +4,7 @@ const uuid = require("node-uuid");
 const fs = require("fs");
 const yaml = require("js-yaml");
 const rename = require("gulp-rename");
-const getEnv = require("../get_env");
+const getEnv = require("../common/get_env");
 const eslint = require("gulp-eslint");
 
 // Lint the codebase
@@ -47,7 +47,7 @@ gulp.task("setup_before_initial_deploy", (callback) => {
               "database_username": "masteruser",
               "database_password": databasePasswords.development,
               "database_port": "5432"
-            }, 
+            },
             "regions": {
               "us-west-2": {
                 "vars": {}
@@ -62,7 +62,7 @@ gulp.task("setup_before_initial_deploy", (callback) => {
               "database_username": "masteruser",
               "database_password": databasePasswords.production,
               "database_port": "5432"
-            }, 
+            },
             "regions": {
               "us-west-2": {
                 "vars": {}
@@ -166,7 +166,7 @@ gulp.task("setup_after_initial_deploy", (callback) => {
           "DATABASE_USERNAME": "postgres",
           "DATABASE_PASSWORD": "test123!",
           "ROLLBAR_API_KEY": "TEST_API_KEY",
-          "SENDER_EMAIL": "TEST_EMAIL"  
+          "SENDER_EMAIL": "TEST_EMAIL"
         }
       };
 

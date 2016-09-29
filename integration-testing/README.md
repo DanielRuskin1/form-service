@@ -2,7 +2,7 @@
 
 The integration testing part of this project is powered by Nightwatch.  
 
-## Folder Structure
+## Project Structure
 
 There are a few key folders in the frontend part of the project:
 

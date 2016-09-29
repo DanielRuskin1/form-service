@@ -2,7 +2,7 @@
 
 The backend for this project is powered entirely by AWS.  Almost all resources are created automatically by Cloudformation, from resources specified in the `custom_resources` folder.
 
-## Folder Structure
+## Project Structure
 
 There are a few key folders in the backend part of the project:
 

@@ -2,7 +2,7 @@
 
 The frontend for this project is powered by React.JS.  
 
-## Folder Structure
+## Project Structure
 
 There are a few key folders in the frontend part of the project:
 

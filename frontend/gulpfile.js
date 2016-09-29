@@ -7,7 +7,7 @@ const eslint = require("gulp-eslint");
 const fs = require("fs");
 const Browserify = require("browserify");
 const through = require("through2");
-const getEnv = require("../get_env");
+const getEnv = require("../common/get_env");
 const cssMin = require("gulp-cssmin");
 
 //* SETUP WORKFLOW
