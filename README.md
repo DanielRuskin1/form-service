@@ -13,6 +13,16 @@ The project has three parts:
 
 You can find more information on each part of the project in their respective folders.
 
+# Deployment Process
+
+The recommended deployment process is as follows:
+
+1. Run integration tests.  See instructions in `integration-testing` folder.
+2. Run backend tests.  See instructions in `backend` folder.
+3. Run frontend tests.  See instructions in `frontend` folder.
+4. Deploy the backend to the appropriate environment (dev or prod).  See instructions in `backend` folder.
+5. Deploy the frontend to the same environment.  See instructions in `frontend folder.`
+
 # License
 
 This project is licensed under the Apache License.  See the `LICENSE` file for more information.
