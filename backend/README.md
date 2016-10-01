@@ -2,6 +2,12 @@
 
 The backend for this project is powered entirely by AWS.  Almost all resources are created automatically by Cloudformation, from resources specified in the `custom_resources` folder.
 
+## Infrastructure
+
+The infrastructure created by this project roughly boils down to the below diagram.  Some trivial elements (e.g. elastic IPs) are omitted from the diagram for simplicity.
+
+![Image](https://github.com/DanielRuskin1/form-service/blob/master/backend/infrastructure_diagram.png)
+
 ## Project Structure
 
 There are a few key folders in the backend part of the project:
