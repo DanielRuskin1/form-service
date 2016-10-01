@@ -62,15 +62,6 @@
   "IGWAssociation1": {
     "$ref": "vpc/route_tables/associations/igw_association_1.json"
   },
-  "IGWAssociation2": {
-    "$ref": "vpc/route_tables/associations/igw_association_2.json"
-  },
-  "IGWAssociation3": {
-    "$ref": "vpc/route_tables/associations/igw_association_3.json"
-  },
-  "IGWAssociation4": {
-    "$ref": "vpc/route_tables/associations/igw_association_4.json"
-  },
   "NATAssociation1": {
     "$ref": "vpc/route_tables/associations/nat_association_1.json"
   },

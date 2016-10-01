@@ -13,7 +13,7 @@
     "MasterUserPassword": "${database_password}",
     "MultiAZ": false,
     "Port": "${database_port}",
-    "PubliclyAccessible": true,
+    "PubliclyAccessible": false,
     "Tags": [
       {
         "Key": "Name",

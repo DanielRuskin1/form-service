@@ -1,12 +1,12 @@
-service: form-service 
+service: form-service
 
 provider:
   name: aws
   iamRoleStatements:
     - Effect: "Allow"
-      Action: 
+      Action:
         - "ec2:CreateNetworkInterface"
-        - "ec2:DescribeNetworkInterfaces" 
+        - "ec2:DescribeNetworkInterfaces"
         - "ec2:DeleteNetworkInterface"
       Resource: "*"
   runtime: nodejs4.3
