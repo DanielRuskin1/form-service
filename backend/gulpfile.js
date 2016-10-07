@@ -148,6 +148,7 @@ gulp.task("setup_after_initial_deploy", (callback) => {
           "DATABASE_USERNAME": serverlessEnv.stages.dev.vars.database_username,
           "DATABASE_PASSWORD": serverlessEnv.stages.dev.vars.database_password,
           "ROLLBAR_API_KEY": res.development_rollbar_api_key,
+          "ROLLBAR_ENABLED": "TRUE",
           "SENDER_EMAIL": res.development_ses_email
         },
         "production": {
@@ -157,6 +158,7 @@ gulp.task("setup_after_initial_deploy", (callback) => {
           "DATABASE_USERNAME": serverlessEnv.stages.prod.vars.database_username,
           "DATABASE_PASSWORD": serverlessEnv.stages.prod.vars.database_password,
           "ROLLBAR_API_KEY": res.production_rollbar_api_key,
+          "ROLLBAR_ENABLED": "TRUE",
           "SENDER_EMAIL": res.production_ses_email
         },
         "test": {
@@ -166,6 +168,7 @@ gulp.task("setup_after_initial_deploy", (callback) => {
           "DATABASE_USERNAME": "postgres",
           "DATABASE_PASSWORD": "test123!",
           "ROLLBAR_API_KEY": "TEST_API_KEY",
+          "ROLLBAR_ENABLED": "FALSE",
           "SENDER_EMAIL": "TEST_EMAIL"
         }
       };

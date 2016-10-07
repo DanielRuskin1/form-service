@@ -6,7 +6,7 @@ describe("Main", function() {
   describe("#deleteContactForm", function() {
     it("should delete a contact form", function(done) {
       // Create a contact form to use during the test
-      const createContactFormParams = { 
+      const createContactFormParams = {
         name: "Hello World",
         ownerCognitoId: "IdentityID",
         ownerEmail: "daniel@druskin.co"
@@ -35,7 +35,7 @@ describe("Main", function() {
           const searchParams = {
             uuid: newContactForm.uuid
           };
-          
+
           Helper.Application.models.ContactForm.findOne({ where: searchParams }).then(function(contactForm) {
             Helper.assert.equal(contactForm, null);
 
@@ -62,7 +62,7 @@ describe("Main", function() {
 
         // 400 with correct errors
         Helper.assert.equal(responseParsed.statusCode, 400);
-        Helper.assert.deepEqual(responseParsed.errors, { 
+        Helper.assert.deepEqual(responseParsed.errors, {
           validation: [
             { field: "contactFormUuid", message: "is invalid" }
           ]
@@ -89,7 +89,7 @@ describe("Main", function() {
 
         // 400 with correct errors
         Helper.assert.equal(responseParsed.statusCode, 400);
-        Helper.assert.deepEqual(responseParsed.errors, { 
+        Helper.assert.deepEqual(responseParsed.errors, {
           validation: [
             { field: "contactFormUuid", message: "is invalid" }
           ]
@@ -101,7 +101,7 @@ describe("Main", function() {
 
     it("should return a 400 error if the contact form belongs to someone else", function(done) {
       // Create a contact form to use during the test
-      const createContactFormParams = { 
+      const createContactFormParams = {
         name: "Hello World",
         ownerCognitoId: "IdentityID",
         ownerEmail: "daniel@druskin.co"
@@ -125,7 +125,7 @@ describe("Main", function() {
 
           // 400 with correct errors
           Helper.assert.equal(responseParsed.statusCode, 400);
-          Helper.assert.deepEqual(responseParsed.errors, { 
+          Helper.assert.deepEqual(responseParsed.errors, {
             validation: [
               { field: "contactFormUuid", message: "is invalid" }
             ]

@@ -16,7 +16,7 @@ module.exports.createContactForm = Application.libraries.makeHandler(function(ev
 
   const contactFormCreateParams = {
     name: contactFormObject.name,
-    ownerCognitoId: callerId, 
+    ownerCognitoId: callerId,
     ownerEmail: contactFormObject.ownerEmail
   };
 
@@ -26,7 +26,11 @@ module.exports.createContactForm = Application.libraries.makeHandler(function(ev
   }).catch(function(contactFormCreateError){
     // Finish the request with an error
     if (contactFormCreateError instanceof Application.libraries.Sequelize.ValidationError) {
-      const validationErrors = Application.libraries.convertValidationErrors(contactFormCreateError.errors);
+      const validationErrors = Application.libraries.generateValidationErrors.fromSequelizeErrors(
+        Application.models.ContactForm,
+        contactFormCreateParams,
+        contactFormCreateError.errors
+      );
       Application.libraries.finishExecution(finishCallback, 400, { validation: validationErrors }, null);
     } else {
       throw contactFormCreateError;
@@ -91,23 +95,28 @@ module.exports.sendMessage = Application.libraries.makeHandler(function(event, c
     Application.libraries.finishExecution(finishCallback, 200, null, { message: newMessage });
   }).catch(function(messageCreateError){
     // Finish the request with an error
+    var validationErrors = null;
+
     if (messageCreateError instanceof Application.libraries.Sequelize.ValidationError) {
-      // Validation error
-      const validationErrors = Application.libraries.convertValidationErrors(messageCreateError.errors);
-      Application.libraries.finishExecution(finishCallback, 400, { validation: validationErrors }, null);
+      validationErrors = Application.libraries.generateValidationErrors.fromSequelizeErrors(
+        Application.models.Message,
+        messageCreateParams,
+        messageCreateError.errors
+      );
     } else if (messageCreateError instanceof Application.libraries.Sequelize.ForeignKeyConstraintError) {
-      // Provided UUID does not map to a ContactForm
-      Application.libraries.finishExecution(finishCallback, 400, { validation: [{ field: "contactFormUuid", message: "is invalid" }] }, null);
+      validationErrors = [Application.libraries.generateValidationErrors.invalidReferenceError("contactFormUuid")];
     } else if (messageCreateError instanceof Application.libraries.Sequelize.DatabaseError) {
       if (messageCreateError.message.indexOf("invalid input syntax for uuid") > -1) {
         // Provided UUID has an invalid syntax
-        Application.libraries.finishExecution(finishCallback, 400, { validation: [{ field: "contactFormUuid", message: "is invalid" }] }, null);
+        validationErrors = [Application.libraries.generateValidationErrors.invalidReferenceError("contactFormUuid")];
       } else {
         throw messageCreateError;
       }
     } else {
       throw messageCreateError;
     }
+
+    Application.libraries.finishExecution(finishCallback, 400, { validation: validationErrors }, null);
   });
 });
 
@@ -133,13 +142,13 @@ module.exports.processMessages = Application.libraries.makeHandler(function(even
             message.contact_form.ownerEmail
           ]
         },
-        Message: { 
+        Message: {
           Body: {
             Text: {
               Data: messageString
             }
           },
-          Subject: { 
+          Subject: {
             Data: subjectString
           }
         },
@@ -160,7 +169,7 @@ module.exports.processMessages = Application.libraries.makeHandler(function(even
         });
       });
     });
-  
+
     // Run all of the calls in parallel, raising an error if any failed
     Application.libraries.async.series(calls, function(error) {
       if (error) {

@@ -17,7 +17,7 @@ application.libraries.AWS = require("./libs/aws_sdk")();
 application.libraries.Sequelize = require("./libs/sequelize")();
 application.libraries.sequelize = require("./libs/sequelize_instance")(application.libraries.Sequelize);
 application.libraries.finishExecution = require("./libs/finish_execution")();
-application.libraries.convertValidationErrors = require("./libs/convert_validation_errors")();
+application.libraries.generateValidationErrors = require("./libs/generate_validation_errors")();
 application.libraries.makeHandler = require("./libs/make_handler")(
   application.domain,
   application.libraries.sequelize

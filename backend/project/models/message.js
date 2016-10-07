@@ -16,15 +16,14 @@ module.exports = function(sequelizeInstance, Sequelize, ContactForm) {
         defaultValue: false
       },
       subject: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
         validate: {
-          notEmpty: true,
           len: [1, 1000]
         }
       },
       from: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
         validate: {
           isEmail: true,
@@ -32,10 +31,9 @@ module.exports = function(sequelizeInstance, Sequelize, ContactForm) {
         }
       },
       message: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(5000),
         allowNull: false,
         validate: {
-          notEmpty: true,
           len: [1, 5000]
         }
       }

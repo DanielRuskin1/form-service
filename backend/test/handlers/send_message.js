@@ -6,7 +6,7 @@ describe("Main", function() {
   describe("#sendMessage", function() {
     beforeEach(function(done) {
       // Create a contact form to use during the test
-      const createContactFormParams = { 
+      const createContactFormParams = {
         name: "Hello World",
         ownerCognitoId: "IdentityID",
         ownerEmail: "daniel@druskin.co"
@@ -69,9 +69,9 @@ describe("Main", function() {
 
         // 400 with correct errors
         Helper.assert.equal(responseParsed.statusCode, 400);
-        Helper.assert.deepEqual(responseParsed.errors, { 
+        Helper.assert.deepEqual(responseParsed.errors, {
           validation: [
-            { field: "contactFormUuid", message: "is invalid" }
+            { field: "contactFormUuid", code: "INVALID_REFERENCE" }
           ]
         });
 
@@ -96,9 +96,9 @@ describe("Main", function() {
 
         // 400 with correct errors
         Helper.assert.equal(responseParsed.statusCode, 400);
-        Helper.assert.deepEqual(responseParsed.errors, { 
+        Helper.assert.deepEqual(responseParsed.errors, {
           validation: [
-            { field: "contactFormUuid", message: "is invalid" }
+            { field: "contactFormUuid", code: "INVALID_REFERENCE" }
           ]
         });
 
@@ -106,7 +106,7 @@ describe("Main", function() {
       });
     });
 
-    it("should return a 400 error for invalid parameters", function(done) {
+    it("should return a 400 error for an invalid email", function(done) {
       Helper.Application.models.ContactForm.findOne().then(function(contactForm) {
         const event = {
           "body-json": {
@@ -124,9 +124,67 @@ describe("Main", function() {
 
           // 400 with correct errors
           Helper.assert.equal(responseParsed.statusCode, 400);
-          Helper.assert.deepEqual(responseParsed.errors, { 
+          Helper.assert.deepEqual(responseParsed.errors, {
             validation: [
-              { field: "from", message: "Validation isEmail failed" }
+              { field: "from", code: "INVALID_EMAIL" }
+            ]
+          });
+
+          done();
+        });
+      });
+    });
+
+    it("should return a 400 error for too many characters in a field", function(done) {
+      Helper.Application.models.ContactForm.findOne().then(function(contactForm) {
+        const event = {
+          "body-json": {
+            "message": {
+              "contactFormUuid": contactForm.uuid,
+              "subject": "H".repeat(1001),
+              "from": "daniel@druskin.co",
+              "message": "Hello, world!  What's up?"
+            }
+          }
+        };
+
+        Helper.Main.sendMessage(event, {}, function(response) {
+          const responseParsed = JSON.parse(response);
+
+          // 400 with correct errors
+          Helper.assert.equal(responseParsed.statusCode, 400);
+          Helper.assert.deepEqual(responseParsed.errors, {
+            validation: [
+              { field: "subject", code: "TOO_LONG" }
+            ]
+          });
+
+          done();
+        });
+      });
+    });
+
+    it("should return a 400 error for too few characters in a field", function(done) {
+      Helper.Application.models.ContactForm.findOne().then(function(contactForm) {
+        const event = {
+          "body-json": {
+            "message": {
+              "contactFormUuid": contactForm.uuid,
+              "subject": "",
+              "from": "daniel@druskin.co",
+              "message": "Hello, world!  What's up?"
+            }
+          }
+        };
+
+        Helper.Main.sendMessage(event, {}, function(response) {
+          const responseParsed = JSON.parse(response);
+
+          // 400 with correct errors
+          Helper.assert.equal(responseParsed.statusCode, 400);
+          Helper.assert.deepEqual(responseParsed.errors, {
+            validation: [
+              { field: "subject", code: "TOO_SHORT" }
             ]
           });
 

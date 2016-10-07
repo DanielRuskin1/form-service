@@ -38,7 +38,7 @@ describe("Main", function() {
       });
     });
 
-    it("should return a 400 error for invalid parameters", function(done) {
+    it("should return a 400 error for an invalid email", function(done) {
       const event = {
         "context": {
           "cognito-identity-id": "IdentityID"
@@ -56,9 +56,65 @@ describe("Main", function() {
 
         // 400 with correct errors
         Helper.assert.equal(responseParsed.statusCode, 400);
-        Helper.assert.deepEqual(responseParsed.errors, { 
+        Helper.assert.deepEqual(responseParsed.errors, {
           validation: [
-            { field: "ownerEmail", message: "Validation isEmail failed" }
+            { field: "ownerEmail", code: "INVALID_EMAIL" }
+          ]
+        });
+
+        done();
+      });
+    });
+
+    it("should return a 400 error for too many characters in a field", function(done) {
+      const event = {
+        "context": {
+          "cognito-identity-id": "IdentityID"
+        },
+        "body-json": {
+          "contactForm": {
+            "name": "D".repeat(1001),
+            "ownerEmail": "daniel@druskin.co"
+          }
+        }
+      };
+
+      Helper.Main.createContactForm(event, {}, function(response) {
+        const responseParsed = JSON.parse(response);
+
+        // 400 with correct errors
+        Helper.assert.equal(responseParsed.statusCode, 400);
+        Helper.assert.deepEqual(responseParsed.errors, {
+          validation: [
+            { field: "name", code: "TOO_LONG" }
+          ]
+        });
+
+        done();
+      });
+    });
+
+    it("should return a 400 error for too few characters in a field", function(done) {
+      const event = {
+        "context": {
+          "cognito-identity-id": "IdentityID"
+        },
+        "body-json": {
+          "contactForm": {
+            "name": "",
+            "ownerEmail": "daniel@druskin.co"
+          }
+        }
+      };
+
+      Helper.Main.createContactForm(event, {}, function(response) {
+        const responseParsed = JSON.parse(response);
+
+        // 400 with correct errors
+        Helper.assert.equal(responseParsed.statusCode, 400);
+        Helper.assert.deepEqual(responseParsed.errors, {
+          validation: [
+            { field: "name", code: "TOO_SHORT" }
           ]
         });
 

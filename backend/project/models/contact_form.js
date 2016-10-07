@@ -3,7 +3,7 @@
 module.exports = function(sequelizeInstance, Sequelize) {
   // ContactForms represent a given form that can be used to send messages to the owner
   var exports = sequelizeInstance.define(
-    "contact_form", 
+    "contact_form",
     {
       uuid: {
         type: Sequelize.UUID,
@@ -11,7 +11,7 @@ module.exports = function(sequelizeInstance, Sequelize) {
         defaultValue: Sequelize.UUIDV4
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         field: "name",
         allowNull: false,
         validate: {
