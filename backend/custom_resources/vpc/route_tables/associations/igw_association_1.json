@@ -5,7 +5,7 @@
       "Ref": "IGWRouteTable"
     },
     "SubnetId": {
-      "Ref": "RDSSubnet1"
+      "Ref": "IGWNatSubnet"
     },
   }
 }

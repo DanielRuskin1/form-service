@@ -11,7 +11,7 @@
   "CognitoUnAuthPolicy": {
     "$ref": "cognito/unauth_policy.json"
   },
-  "CreateContactFormFunctionLambdaFunction": {
+  "ProcessMessagesFunctionLambdaFunction": {
     "$ref": "functions/process_messages.json"
   },
   "ApiGatewayMethodContactformsPost": {
