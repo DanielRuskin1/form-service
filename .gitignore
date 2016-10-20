@@ -1,7 +1,7 @@
 # Ignore config files (these contain sensitive env variables)
 config.json
 config.json.*
-serverless.env.yml
+serverless.env.json
 
 # Ignore serverless meta folder
 .serverless

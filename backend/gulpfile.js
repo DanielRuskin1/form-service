@@ -37,42 +37,23 @@ gulp.task("setup_before_initial_deploy", (callback) => {
 
       // Generate/save serverless config
       const serverlessConfig = {
-        "vars": {},
-        "stages": {
-          "dev": {
-            "vars": {
-              "stage": "dev",
-              "prefix": "formservicedev",
-              "identity_pool_id": res.development_identity_pool_id,
-              "database_username": "masteruser",
-              "database_password": databasePasswords.development,
-              "database_port": "5432"
-            },
-            "regions": {
-              "us-west-2": {
-                "vars": {}
-              }
-            }
-          },
-          "prod": {
-            "vars": {
-              "stage": "prod",
-              "prefix": "formserviceprod",
-              "identity_pool_id": res.production_identity_pool_id,
-              "database_username": "masteruser",
-              "database_password": databasePasswords.production,
-              "database_port": "5432"
-            },
-            "regions": {
-              "us-west-2": {
-                "vars": {}
-              }
-            }
-          }
+        "dev": {
+          "prefix": "formservicedev",
+          "identityPoolId": res.development_identity_pool_id,
+          "databaseUsername": "masteruser",
+          "databasePassword": databasePasswords.development,
+          "databasePort": "5432"
+        },
+        "prod": {
+          "prefix": "formserviceprod",
+          "identityPoolId": res.production_identity_pool_id,
+          "databaseUsername": "masteruser",
+          "databasePassword": databasePasswords.production,
+          "databasePort": "5432"
         }
       };
 
-      fs.writeFile("serverless.env.yml", yaml.safeDump(serverlessConfig), function (error) {
+      fs.writeFile("serverless.env.json", JSON.stringify(serverlessConfig), function (error) {
         if (error) {
           callback(error);
         } else {
@@ -128,25 +109,25 @@ gulp.task("setup_after_initial_deploy", (callback) => {
       {
         type: "input",
         name: "development_rds_host",
-        message: "What What is your development RDS instance host (without the port)?"
+        message: "What is your development RDS instance host (without the port)?"
       },
       {
         type: "input",
         name: "production_rds_host",
-        message: "What What is your production RDS instance host (without the port)?"
+        message: "What is your production RDS instance host (without the port)?"
       }
     ], function(res) {
       // Get serverless config (so we can get the database creds)
-      const serverlessEnv = yaml.safeLoad(fs.readFileSync("serverless.env.yml"));
+      const serverlessEnv = JSON.parse(fs.readFileSync("serverless.env.json"));
 
       // Generate lambda config files
       const lambdaConfigs = {
         "development": {
           "DATABASE_NAME": "formservicedev",
           "DATABASE_HOST": res.development_rds_host,
-          "DATABASE_PORT": serverlessEnv.stages.dev.vars.database_port,
-          "DATABASE_USERNAME": serverlessEnv.stages.dev.vars.database_username,
-          "DATABASE_PASSWORD": serverlessEnv.stages.dev.vars.database_password,
+          "DATABASE_PORT": serverlessEnv.dev.databasePort,
+          "DATABASE_USERNAME": serverlessEnv.dev.databaseUsername,
+          "DATABASE_PASSWORD": serverlessEnv.dev.databasePassword,
           "ROLLBAR_API_KEY": res.development_rollbar_api_key,
           "ROLLBAR_ENABLED": "TRUE",
           "SENDER_EMAIL": res.development_ses_email
@@ -154,9 +135,9 @@ gulp.task("setup_after_initial_deploy", (callback) => {
         "production": {
           "DATABASE_NAME": "formserviceprod",
           "DATABASE_HOST": res.production_rds_host,
-          "DATABASE_PORT": serverlessEnv.stages.prod.vars.database_port,
-          "DATABASE_USERNAME": serverlessEnv.stages.prod.vars.database_username,
-          "DATABASE_PASSWORD": serverlessEnv.stages.prod.vars.database_password,
+          "DATABASE_PORT": serverlessEnv.prod.databasePort,
+          "DATABASE_USERNAME": serverlessEnv.prod.databaseUsername,
+          "DATABASE_PASSWORD": serverlessEnv.prod.databasePassword,
           "ROLLBAR_API_KEY": res.production_rollbar_api_key,
           "ROLLBAR_ENABLED": "TRUE",
           "SENDER_EMAIL": res.production_ses_email

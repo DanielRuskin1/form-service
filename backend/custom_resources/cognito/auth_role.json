@@ -1,25 +1,25 @@
 {
   "Type": "AWS::IAM::Role",
-  "Properties": {  
-    "AssumeRolePolicyDocument": {  
+  "Properties": {
+    "AssumeRolePolicyDocument": {
       "Version": "2012-10-17",
-      "Statement": [  
-        {  
+      "Statement": [
+        {
           "Effect": "Allow",
-          "Principal": {  
-            "Federated": [  
+          "Principal": {
+            "Federated": [
               "cognito-identity.amazonaws.com"
             ]
           },
           "Condition": {
             "StringEquals": {
-              "cognito-identity.amazonaws.com:aud": "${identity_pool_id}"
+              "cognito-identity.amazonaws.com:aud": "${file(./serverless.env.json):${opt:stage}.identityPoolId}"
             },
             "ForAnyValue:StringLike": {
               "cognito-identity.amazonaws.com:amr": "authenticated"
             }
           },
-          "Action": [  
+          "Action": [
             "sts:AssumeRoleWithWebIdentity"
           ]
         }

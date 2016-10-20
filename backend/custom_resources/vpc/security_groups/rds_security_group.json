@@ -7,11 +7,11 @@
     },
     "SecurityGroupIngress": [
       {
-        "FromPort": "${database_port}",
-        "ToPort": "${database_port}",
+        "FromPort": "${file(./serverless.env.json):${opt:stage}.databasePort}",
+        "ToPort": "${file(./serverless.env.json):${opt:stage}.databasePort}",
         "IpProtocol": "tcp",
         "SourceSecurityGroupId": {
-          "Ref": "LambdaSecurityGroup" 
+          "Ref": "LambdaSecurityGroup"
         }
       }
     ],

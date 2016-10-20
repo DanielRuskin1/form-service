@@ -2,6 +2,8 @@ service: form-service
 
 provider:
   name: aws
+  stage: dev
+  region: us-west-2
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -10,9 +12,6 @@ provider:
         - "ec2:DeleteNetworkInterface"
       Resource: "*"
   runtime: nodejs4.3
-defaults:
-  stage: dev
-  region: us-west-2
 
 package:
   include:
@@ -25,13 +24,14 @@ package:
 
 functions:
   createContactFormFunction:
-    name: ${prefix}-createContactForm
+    name: ${file(./serverless.env.json):${opt:stage}.prefix}-createContactForm
     handler: project/main.createContactForm
     events:
       - http:
           path: contact_forms
           method: POST
           cors: true
+          integration: lambda
     vpc:
       securityGroupIds:
         -
@@ -44,13 +44,14 @@ functions:
         -
           Ref: LambdaSubnet3
   deleteContactFormFunction:
-    name: ${prefix}-deleteContactForm
+    name: ${file(./serverless.env.json):${opt:stage}.prefix}-deleteContactForm
     handler: project/main.deleteContactForm
     events:
       - http:
           path: contact_forms
           method: DELETE
           cors: true
+          integration: lambda
     vpc:
       securityGroupIds:
         -
@@ -63,13 +64,14 @@ functions:
         -
           Ref: LambdaSubnet3
   listContactFormsFunction:
-    name: ${prefix}-listContactForms
+    name: ${file(./serverless.env.json):${opt:stage}.prefix}-listContactForms
     handler: project/main.listContactForms
     events:
       - http:
           path: contact_forms
           method: GET
           cors: true
+          integration: lambda
     vpc:
       securityGroupIds:
         -
@@ -82,13 +84,14 @@ functions:
         -
           Ref: LambdaSubnet3
   sendMessageFunction:
-    name: ${prefix}-sendMessage
+    name: ${file(./serverless.env.json):${opt:stage}.prefix}-sendMessage
     handler: project/main.sendMessage
     events:
       - http:
           path: messages/send
           method: POST
           cors: true
+          integration: lambda
     vpc:
       securityGroupIds:
         -
@@ -101,7 +104,7 @@ functions:
         -
           Ref: LambdaSubnet3
   processMessagesFunction:
-    name: ${prefix}-processMessages
+    name: ${file(./serverless.env.json):${opt:stage}.prefix}-processMessages
     handler: project/main.processMessages
     events:
       - schedule: rate(2 hours)
@@ -117,7 +120,7 @@ functions:
         -
           Ref: LambdaSubnet3
   setupDatabaseFunction:
-    name: ${prefix}-setupDatabase
+    name: ${file(./serverless.env.json):${opt:stage}.prefix}-setupDatabase
     handler: project/main.setupDatabase
     vpc:
       securityGroupIds:

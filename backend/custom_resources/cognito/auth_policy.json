@@ -2,7 +2,7 @@
   "Type": "AWS::IAM::Policy",
   "Properties": {
     "PolicyName": "CognitoAuthPolicy",
-    "PolicyDocument": { 
+    "PolicyDocument": {
       "Version": "2012-10-17",
       "Statement": [
         {
@@ -30,9 +30,9 @@
                   },
                   ":",
                   {
-                    "Ref": "RestApiApigEvent"
+                    "Ref": "ApiGatewayRestApi"
                   },
-                  "/${stage}/POST/contact_forms"
+                  "/${opt:stage}/POST/contact_forms"
                 ]
               ]
             },
@@ -46,9 +46,9 @@
                   },
                   ":",
                   {
-                    "Ref": "RestApiApigEvent"
+                    "Ref": "ApiGatewayRestApi"
                   },
-                  "/${stage}/DELETE/contact_forms"
+                  "/${opt:stage}/DELETE/contact_forms"
                 ]
               ]
             },
@@ -62,9 +62,9 @@
                   },
                   ":",
                   {
-                    "Ref": "RestApiApigEvent"
+                    "Ref": "ApiGatewayRestApi"
                   },
-                  "/${stage}/GET/contact_forms"
+                  "/${opt:stage}/GET/contact_forms"
                 ]
               ]
             }
@@ -72,8 +72,8 @@
         }
       ]
     },
-    "Roles": [ 
-      {  
+    "Roles": [
+      {
         "Ref":"CognitoAuthRole"
       }
     ]

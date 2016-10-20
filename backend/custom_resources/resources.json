@@ -11,19 +11,19 @@
   "CognitoUnAuthPolicy": {
     "$ref": "cognito/unauth_policy.json"
   },
-  "processMessagesFunction": {
+  "CreateContactFormFunctionLambdaFunction": {
     "$ref": "functions/process_messages.json"
   },
-  "PostMethodApigEventCreatecontactformfunctionContactforms": {
+  "ApiGatewayMethodContactformsPost": {
     "$ref": "methods/create_contact_form.json"
   },
-  "DeleteMethodApigEventCreatecontactformfunctionContactforms": {
+  "ApiGatewayMethodContactformsDelete": {
     "$ref": "methods/delete_contact_form.json"
   },
-  "GetMethodApigEventCreatecontactformfunctionContactforms": {
+  "ApiGatewayMethodContactformsGet": {
     "$ref": "methods/list_contact_forms.json"
   },
-  "PostMethodApigEventSendmessagefunctionMessagesSend": {
+  "ApiGatewayMethodMessagesSendPost": {
     "$ref": "methods/send_message.json"
   },
   "RDSInstance": {
