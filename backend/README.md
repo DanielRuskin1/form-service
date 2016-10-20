@@ -77,15 +77,13 @@ Once all of the initial setup above is finished, you can deploy the backend in t
 
 Once you're done with your deployment, follow these steps to cleanup:
 
-1. Temporarily remove the `stackPolicy` from `serverless.yml`.  This will ensure you are able to delete the RDS instance (which is prevented by default for security).
-2. Run `sls remove --stage ENV`, replacing ENV with the stage you want to cleanup (dev or prod).
-3. Manually delete the `form-service-dev` and `form-service-prod` Cloudformation stacks in the [Cloudformation web panel](https://console.aws.amazon.com/cloudformation/home), if they are still present.  Wait until the completion finishes.
-4. If the completion fails, this is due to buggy behavior in Lambda and Cloudformation.  You will need to:
+1. Run `sls remove --stage ENV`, replacing ENV with the stage you want to cleanup (dev or prod).
+2. Manually delete the `form-service-dev` and `form-service-prod` Cloudformation stacks in the [Cloudformation web panel](https://console.aws.amazon.com/cloudformation/home), if they are still present.  Wait until the completion finishes.
+3. If the completion fails, this is due to buggy behavior in Lambda and Cloudformation.  You will need to:
   1. Manually delete your VPC in the [VPC web panel](https://us-west-2.console.aws.amazon.com/vpc/home) (this is necessary due to buggy behavior in Cloudformation).  If you receive a message about ENIs, wait 2-3 hours and try again.
   2. Re-trigger deletion in the Cloudformation web panel.
-5. Remove your Cognito identity pools on the Cognito web panel, as well as the associated Google applications.
-6. Revert any SES changes on your account (i.e. delete your verified email, request a send limit decrease).
-7. Re-add the `stackPolicy` to ensure it is not permanently deleted.
+4. Remove your Cognito identity pools on the Cognito web panel, as well as the associated Google applications.
+5. Revert any SES changes on your account (i.e. delete your verified email, request a send limit decrease).
 
 ## Special Notes
 
