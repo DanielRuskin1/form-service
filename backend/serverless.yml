@@ -11,6 +11,10 @@ provider:
         - "ec2:DescribeNetworkInterfaces"
         - "ec2:DeleteNetworkInterface"
       Resource: "*"
+  stackPolicy:
+    # Don't allow deletion of RDS instance (otherwise we could lose data).
+    # See docs for how to get around this.
+    - { Effect: "Deny", Principal: "*", Action: ["Update:Replace", "Update:Delete"], Resource: "LogicalResourceId/RDSInstance" }
   runtime: nodejs4.3
 
 package:
