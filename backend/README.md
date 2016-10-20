@@ -75,7 +75,7 @@ Once all of the initial setup above is finished, you can deploy the backend in t
 
 ### Cleaning Up
 
-Once you're done with your deployment, follow these steps to cleanup:
+Once you're done with your deployment, follow these steps to cleanup.  Be careful: this will delete all data stored in the database.
 
 1. Run `sls remove --stage ENV`, replacing ENV with the stage you want to cleanup (dev or prod).
 2. Manually delete the `form-service-dev` and `form-service-prod` Cloudformation stacks in the [Cloudformation web panel](https://console.aws.amazon.com/cloudformation/home), if they are still present.  Wait until the completion finishes.
