@@ -58,11 +58,9 @@ module.exports = React.createClass({
   },
   render: function() {
     // Only render result if there has been an attempted request
-    var resultArray = [];
+    var result = "";
     if(this.state.pending || this.state.lastRequestData !== null) {
-      resultArray.unshift(
-        <Result result={this.state.lastRequestData} uniqueErrorKey="contactFormFormErrors" />
-      );
+      result = <Result resultType="api" result={this.state.lastRequestData} uniqueErrorKey="contactFormFormErrors" />;
     }
 
     return (
@@ -81,7 +79,7 @@ module.exports = React.createClass({
         />
         <input type="submit" value="Create" />
 
-        {resultArray}
+        {result}
       </form>
     );
   }

@@ -38,7 +38,7 @@ module.exports = React.createClass({
     if(self.state.fetchData === null || self.state.fetchData.status !== 200) {
       return (
         <div className="contactFormList">
-          <Result result={self.state.fetchData} uniqueErrorKey="contactFormListErrors" />
+          <Result resultType="api" result={self.state.fetchData} uniqueErrorKey="contactFormListErrors" />
         </div>
       );
     } else {
