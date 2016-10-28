@@ -27,7 +27,8 @@
     "js-yaml": "^3.6.1",
     "mocha": "^3.0.2",
     "node-uuid": "^1.4.7",
-    "rewire": "^2.5.2"
+    "rewire": "^2.5.2",
+    "serverless": "^1.0.2"
   },
   "dependencies": {}
 }

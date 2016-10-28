@@ -77,7 +77,7 @@ Once all of the initial setup above is finished, you can deploy the backend in t
 
 Once you're done with your deployment, follow these steps to cleanup.  Be careful: this will delete all data stored in the database.
 
-1. Run `sls remove --stage ENV`, replacing ENV with the stage you want to cleanup (dev or prod).
+1. Run `node_modules/serverless/bin/serverless remove --stage ENV`, replacing ENV with the stage you want to cleanup (dev or prod).
 2. Manually delete the `form-service-dev` and `form-service-prod` Cloudformation stacks in the [Cloudformation web panel](https://console.aws.amazon.com/cloudformation/home), if they are still present.  Wait until the completion finishes.
 3. If the completion fails, this is due to buggy behavior in Lambda and Cloudformation.  You will need to:
   1. Manually delete your VPC in the [VPC web panel](https://us-west-2.console.aws.amazon.com/vpc/home) (this is necessary due to buggy behavior in Cloudformation).  If you receive a message about ENIs, wait 2-3 hours and try again.
