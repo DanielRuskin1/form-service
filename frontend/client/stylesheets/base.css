@@ -87,6 +87,10 @@ input, textarea {
   display: none;
 }
 
+.pendingBox {
+  border: 2px solid orange;
+}
+
 .resultErrorBox {
   border: 2px solid red;
 }
@@ -95,7 +99,7 @@ input, textarea {
   border: 2px solid green;
 }
 
-.resultErrorBox, .resultSuccessBox {
+.pendingBox, .resultErrorBox, .resultSuccessBox {
   border-radius: 5px;
   margin-top: 2%;
   overflow-wrap: break-word;

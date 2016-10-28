@@ -43,7 +43,10 @@ module.exports = React.createClass({
         }
       });
     }).then(function(data) {
-      self.setState({ pending: false, lastRequestData: data });
+      // Make sure list is up-to-date before showing success
+      self.props.onCreate().then(function() {
+        self.setState({ pending: false, lastRequestData: data });
+      });
     }).catch(function(error) {
       self.setState({ pending: false, lastRequestData: error });
     });
@@ -54,6 +57,14 @@ module.exports = React.createClass({
     });
   },
   render: function() {
+    // Only render result if there has been an attempted request
+    var resultArray = [];
+    if(this.state.pending || this.state.lastRequestData !== null) {
+      resultArray.unshift(
+        <Result result={this.state.lastRequestData} uniqueErrorKey="contactFormFormErrors" />
+      );
+    }
+
     return (
       <form className="contactFormForm" onSubmit={this.handleSubmit}>
         <input
@@ -70,7 +81,7 @@ module.exports = React.createClass({
         />
         <input type="submit" value="Create" />
 
-        <Result result={this.state.lastRequestData} uniqueErrorKey="contactFormFormErrors" />
+        {resultArray}
       </form>
     );
   }

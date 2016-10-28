@@ -10,7 +10,8 @@ module.exports = React.createClass({
       <GoogleLogin
         clientId={this.props.clientId}
         buttonText="Login"
-        callback={this.props.authorizationHandler} />
+        onSuccess={this.props.onSuccess}
+        onFailure={this.props.onFailure} />
     );
   },
 });

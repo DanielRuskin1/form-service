@@ -8,9 +8,9 @@ export AWS_SERVICES=cognitoidentity
 # Build
 gulp delete_existing_build &&
   gulp setup_folder_structure &&
-  gulp lint && 
-  gulp delete_build_config_file && 
-  gulp copy_build_config_file --env=$build_env && 
+  # gulp lint && 
+  gulp delete_build_config_file &&
+  gulp copy_build_config_file --env=$build_env &&
   gulp run_browserify --env=$build_env &&
   gulp copy_api_gateway_sdk &&
   gulp build_css --env=$build_env &&

@@ -10,25 +10,21 @@ const Result = require("./result");
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      data: [],
-      error: false
+      fetchData: null
     };
   },
   loadContactFormsFromServer: function() {
     const self = this;
 
-    GetApiGatewayClient(self.props.region, self.props.credentials).then(function(client) {
+    return GetApiGatewayClient(self.props.region, self.props.credentials).then(function(client) {
       return client.contactFormsGet();
     }).then(function(contactFormResponse) {
       self.setState({
-        error: false,
-        lastRequestData: contactFormResponse,
-        data: contactFormResponse.data.data.contactForms
+        fetchData: contactFormResponse
       });
     }).catch(function(error) {
       self.setState({
-        error: true,
-        lastRequestData: error
+        fetchData: error
       });
     });
   },
@@ -39,14 +35,14 @@ module.exports = React.createClass({
   render: function() {
     const self = this;
 
-    if(self.state.error) {
+    if(self.state.fetchData === null || self.state.fetchData.status !== 200) {
       return (
         <div className="contactFormList">
-          <Result result={self.state.lastRequestData} uniqueErrorKey="contactFormListErrors" />
+          <Result result={self.state.fetchData} uniqueErrorKey="contactFormListErrors" />
         </div>
       );
     } else {
-      const contactFormNodes = self.state.data.map(function(contactForm) {
+      const contactFormNodes = self.state.fetchData.data.data.contactForms.map(function(contactForm) {
         return (
           <ContactForm region={self.props.region} credentials={self.props.credentials} name={contactForm.name} ownerEmail={contactForm.ownerEmail} uuid={contactForm.uuid} key={contactForm.uuid}>
           </ContactForm>

@@ -48,6 +48,6 @@
     "aws-sdk": "^2.5.5",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-google-login": "^2.1.2"
+    "react-google-login": "^2.5.2"
   }
 }

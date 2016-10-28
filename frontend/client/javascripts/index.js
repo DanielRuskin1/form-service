@@ -15,7 +15,7 @@ const App = React.createClass({
   render: function() {
     var button = "";
     if (this.state.showButton) {
-      button = <GoogleSignin authorizationHandler={this.handleAuthorization} clientId={Config.googleClientId} />;
+      button = <GoogleSignin onSuccess={this.handleAuthorizationSuccess} onFailure={this.handleAuthorizationFailure} clientId={Config.googleClientId} />;
     }
 
     var contactFormBox = "";
@@ -29,7 +29,7 @@ const App = React.createClass({
       });
       contactFormBox = <ContactFormBox region={region} credentials={credentials} pollInterval={1000} />;
     }
-    
+
     return (
       <div className="contactFormBox">
         <h1>Contact Forms</h1>
@@ -44,10 +44,14 @@ const App = React.createClass({
       showContactFormBox: false
     };
   },
-  handleAuthorization: function(response) {
+  handleAuthorizationSuccess: function(response) {
     // Hide login form, show contact form box with auth token
     this.setState({ showButton: false });
-    this.setState({ googleAuthToken: response.Zi.id_token, showContactFormBox: true });
+    this.setState({ googleAuthToken: response.tokenObj.id_token, showContactFormBox: true });
+  },
+  handleAuthorizationFailure: function(response) {
+    response;
+    // TODO
   }
 });
 

@@ -43,7 +43,28 @@ module.exports = React.createClass({
                 throw "Unknown error code!";
               }
 
-              errorsToShow.unshift("Error of type " + errorType + " on field " + errorObject.field + ": " + messageToShow);
+              var fieldToShow = null;
+              switch(errorObject.field) {
+              case "ownerEmail":
+                fieldToShow = "email address";
+                break;
+              case "name":
+                fieldToShow = "name";
+                break;
+              case "from":
+                fieldToShow = "from";
+                break;
+              case "subject":
+                fieldToShow = "subject";
+                break;
+              case "message":
+                fieldToShow = "message";
+                break;
+              default:
+                throw "Unknown field name!";
+              }
+
+              errorsToShow.unshift("Error on " + fieldToShow + ": " + messageToShow);
             }
           }
         } else {
@@ -71,7 +92,9 @@ module.exports = React.createClass({
       }
     } else {
       return (
-        <div className="hidden" />
+        <div className="pendingBox">
+          <strong>Processing...</strong>
+        </div>
       );
     }
   }

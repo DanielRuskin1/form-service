@@ -66,6 +66,14 @@ module.exports = React.createClass({
   render: function() {
     const uniqueErrorKey = this.props.contactFormUuid + "errors";
 
+    // Only render result if there has been an attempted request
+    var resultArray = [];
+    if(this.state.pending || this.state.lastRequestData !== null) {
+      resultArray.unshift(
+        <Result result={this.state.lastRequestData} uniqueErrorKey={uniqueErrorKey} />
+      );
+    }
+
     return (
       <form className="messageForm" onSubmit={this.handleSubmit}>
         <div>
@@ -90,7 +98,7 @@ module.exports = React.createClass({
         </div>
         <input type="submit" value="Send" />
 
-        <Result result={this.state.lastRequestData} uniqueErrorKey={uniqueErrorKey} />
+        {resultArray}
       </form>
     );
   }
