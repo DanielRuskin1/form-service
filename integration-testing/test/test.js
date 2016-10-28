@@ -9,10 +9,13 @@ const getArg = require("../../common/get_arg");
 // 2. Unit testing on the backend, which verifies different error cases
 module.exports = {
   "Application works": (client) => {
-    // Generate UUID for contact form, and an XPath query to get the contact form.
+    // Generate UUID for contact form name, and an XPath query to get the contact form.
     // We will use this to assert the form shows up
     const generatedUuid = uuid.v4();
     const contactFormXpath = "//div[@class='contactForm' and contains(., '" + generatedUuid + "')]";
+
+    const contactFormSuccessXpath = "//div[@class='contactFormBox']//div[@class='resultSuccessBox']";
+    const messageSuccessXpath = contactFormXpath + "//div[@class='resultSuccessBox']";
 
     // Visit page
     client
@@ -55,7 +58,8 @@ module.exports = {
       .setValue("//input[@placeholder='Contact Form Email']", "daniel@druskin.co")
       .click("//input[@type='submit']")
 
-      // Verify new contact form shows up
+      // Verify success + new contact form shows up
+      .waitForElementVisible(contactFormSuccessXpath, 30000)
       .waitForElementVisible(contactFormXpath, 30000)
 
       // Try sending a message to the new contact form
@@ -63,10 +67,7 @@ module.exports = {
       .setValue(contactFormXpath + "//input[@placeholder='Subject']", "Hello, world!")
       .setValue(contactFormXpath + "//textarea[@placeholder='Message']", "Hello, world!  What's up?")
       .click(contactFormXpath + "//input[@type='submit']")
-      .pause(30000) // Wait for request to complete
-      .getAlertText((result) => {
-        client.assert.equal(result.value, "Done!");
-      })
+      .waitForElementVisible(messageSuccessXpath, 30000)
       .end();
   }
 };

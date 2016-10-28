@@ -1,13 +1,19 @@
 "use strict";
 
+const GetApiGatewayClient = require("../../helpers/get_api_gateway_client");
+
 const React = require("react");
+
+const Result = require("./result");
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       subject: "",
       from: "",
-      message: ""
+      message: "",
+      pending: false,
+      lastRequestData: null
     };
   },
   handleSubjectChange: function(e) {
@@ -28,15 +34,29 @@ module.exports = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
 
+    const self = this;
+
     const subject = this.state.subject.trim();
     const from = this.state.from.trim();
     const message = this.state.message.trim();
 
-    this.props.handleMessageSubmit({
-      subject: subject,
-      from: from,
-      message: message
+    // Reset state to pending + no error before submitting the request
+    self.setState({ pending: true, lastRequestData: null });
+    GetApiGatewayClient(self.props.region, self.props.credentials).then(function(client) {
+      return client.messagesSendPost({}, {
+        message: {
+          contactFormUuid: self.props.contactFormUuid,
+          subject: subject,
+          from: from,
+          message: message
+        }
+      });
+    }).then(function(data) {
+      self.setState({ pending: false, lastRequestData: data });
+    }).catch(function(error) {
+      self.setState({ pending: false, lastRequestData: error });
     });
+
     this.setState({
       subject: "",
       from: "",
@@ -44,6 +64,8 @@ module.exports = React.createClass({
     });
   },
   render: function() {
+    const uniqueErrorKey = this.props.contactFormUuid + "errors";
+
     return (
       <form className="messageForm" onSubmit={this.handleSubmit}>
         <div>
@@ -67,6 +89,8 @@ module.exports = React.createClass({
           />
         </div>
         <input type="submit" value="Send" />
+
+        <Result result={this.state.lastRequestData} uniqueErrorKey={uniqueErrorKey} />
       </form>
     );
   }

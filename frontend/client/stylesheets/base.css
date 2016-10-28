@@ -67,7 +67,7 @@ ul {
 
 .contactFormForm {
   border: dotted;
-  width: 25%;
+  width: 80%;
   margin-bottom: 3%;
   padding: 1%;
 }
@@ -81,4 +81,23 @@ ul {
 
 input, textarea {
   width: 80%;
+}
+
+.hidden {
+  display: none;
+}
+
+.resultErrorBox {
+  border: 2px solid red;
+}
+
+.resultSuccessBox {
+  border: 2px solid green;
+}
+
+.resultErrorBox, .resultSuccessBox {
+  border-radius: 5px;
+  margin-top: 2%;
+  overflow-wrap: break-word;
+  padding: 2%;
 }

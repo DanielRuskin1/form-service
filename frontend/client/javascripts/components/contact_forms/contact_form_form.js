@@ -1,12 +1,18 @@
 "use strict";
 
+const GetApiGatewayClient = require("../../helpers/get_api_gateway_client");
+
 const React = require("react");
+
+const Result = require("./result");
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       name: "",
-      ownerEmail: ""
+      ownerEmail: "",
+      pending: false,
+      lastRequestData: null
     };
   },
   handleNameChange: function(e) {
@@ -22,14 +28,27 @@ module.exports = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
 
+    const self = this;
+
     const name = this.state.name.trim();
     const ownerEmail = this.state.ownerEmail.trim();
 
-    this.props.onContactFormSubmit({
-      name: name,
-      ownerEmail: ownerEmail
+    // Reset state to pending + no error before submitting the request
+    self.setState({ pending: true, lastRequestData: null });
+    GetApiGatewayClient(self.props.region, self.props.credentials).then(function(client) {
+      return client.contactFormsPost({}, {
+        contactForm: {
+          name: name,
+          ownerEmail: ownerEmail
+        }
+      });
+    }).then(function(data) {
+      self.setState({ pending: false, lastRequestData: data });
+    }).catch(function(error) {
+      self.setState({ pending: false, lastRequestData: error });
     });
-    this.setState({
+
+    self.setState({
       name: "",
       ownerEmail: ""
     });
@@ -50,6 +69,8 @@ module.exports = React.createClass({
           onChange={this.handleOwnerEmailChange}
         />
         <input type="submit" value="Create" />
+
+        <Result result={this.state.lastRequestData} uniqueErrorKey="contactFormFormErrors" />
       </form>
     );
   }
