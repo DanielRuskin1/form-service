@@ -2,18 +2,8 @@ const gulp = require("gulp");
 const prompt = require("gulp-prompt");
 const uuid = require("node-uuid");
 const fs = require("fs");
-const yaml = require("js-yaml");
 const rename = require("gulp-rename");
 const getEnv = require("../common/get_env");
-const eslint = require("gulp-eslint");
-
-// Lint the codebase
-gulp.task("lint", () => {
-  return gulp.src(["project/**/*.js", "scripts/**/*.js", "!node_modules", "!node_modules/**", "!project/node_modules", "!project/node_modules/**"])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
 
 gulp.task("setup_before_initial_deploy", (callback) => {
   gulp.src("")

@@ -3,7 +3,6 @@ const rename = require("gulp-rename");
 const rimraf = require("rimraf");
 const prompt = require("gulp-prompt");
 const mkdirp = require("mkdirp");
-const eslint = require("gulp-eslint");
 const fs = require("fs");
 const Browserify = require("browserify");
 const through = require("through2");
@@ -99,14 +98,6 @@ gulp.task("setup_folder_structure", (callback) => {
   } catch(error) {
     callback(error);
   }
-});
-
-// Lint the codebase
-gulp.task("lint", () => {
-  return gulp.src(["client/javascripts/**/*.js", "*.js", "!client/javascripts/vendor", "!client/javascripts/vendor/**", "tests/**/*.js"])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
 });
 
 // Deletes the config.json file from the client folder, so it doesn"t stick around after the deploy finishes.

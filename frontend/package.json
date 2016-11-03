@@ -23,7 +23,7 @@
     "browserify-aws-sdk": "^1.0.4",
     "eslint": "^3.4.0",
     "eslint-config-google": "^0.6.0",
-    "eslint-plugin-react": "^6.2.0",
+    "eslint-plugin-react": "^6.5.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-browserify": "^0.5.1",

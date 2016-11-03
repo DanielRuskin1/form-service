@@ -6,7 +6,7 @@ describe("Main", function() {
   describe("#processMessages", function() {
     beforeEach(function(done) {
       // Create a contact form and message to use during the test
-      const createContactFormParams = { 
+      const createContactFormParams = {
         name: "Hello World",
         ownerCognitoId: "IdentityID",
         ownerEmail: "daniel@druskin.co"
@@ -20,7 +20,7 @@ describe("Main", function() {
           message: "Hey!"
         };
 
-        Helper.Application.models.Message.create(createMessageParams).then(function(newMessage) {
+        Helper.Application.models.Message.create(createMessageParams).then(function() {
           done();
         });
       });

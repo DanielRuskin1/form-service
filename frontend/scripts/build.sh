@@ -6,9 +6,10 @@ read build_env
 export AWS_SERVICES=cognitoidentity
 
 # Build
-gulp delete_existing_build &&
+node_modules/eslint/bin/eslint.js . --ignore-pattern node_modules --ignore-pattern vendor --ignore-pattern dist &&
+  gulp delete_existing_build &&
   gulp setup_folder_structure &&
-  # gulp lint && 
+  # gulp lint &&
   gulp delete_build_config_file &&
   gulp copy_build_config_file --env=$build_env &&
   gulp run_browserify --env=$build_env &&

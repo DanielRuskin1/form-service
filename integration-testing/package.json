@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/danielruskin1/form-service",
   "devDependencies": {
+    "eslint": "^3.9.1",
     "nightwatch": "^0.9.8",
     "node-uuid": "^1.4.7",
     "selenium-standalone": "^5.7.2"

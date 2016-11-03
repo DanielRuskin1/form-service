@@ -1,3 +1,9 @@
+# Fail if any commands fail (e.g. linting)
+set -e
+
+# Lint the tests (because why not)
+node_modules/eslint/bin/eslint.js . --ignore-pattern node_modules --ignore-pattern dist
+
 # Get user data
 echo "What is your google account username?  Note that the account cannot have 2FA enabled."
 read google_username

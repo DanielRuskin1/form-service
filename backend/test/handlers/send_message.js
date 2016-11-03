@@ -12,7 +12,7 @@ describe("Main", function() {
         ownerEmail: "daniel@druskin.co"
       };
 
-      Helper.Application.models.ContactForm.create(createContactFormParams).then(function(newContactForm) {
+      Helper.Application.models.ContactForm.create(createContactFormParams).then(function() {
         done();
       });
     });

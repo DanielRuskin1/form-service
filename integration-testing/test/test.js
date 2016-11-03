@@ -48,7 +48,7 @@ module.exports = {
             .click("//button[@id='submit_approve_access']")
             .switchWindow(result.value[0]);
         } else {
-          client.switchWindow(result.value[0])
+          client.switchWindow(result.value[0]);
         }
       })
 

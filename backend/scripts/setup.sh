@@ -3,7 +3,7 @@ set -e
 set -o pipefail
 
 # Setup
-gulp lint &&
+node_modules/eslint/bin/eslint.js . --ignore-pattern node_modules &&
   gulp setup_before_initial_deploy &&
   echo dev | sh scripts/deploy.sh &&
   echo prod | sh scripts/deploy.sh &&

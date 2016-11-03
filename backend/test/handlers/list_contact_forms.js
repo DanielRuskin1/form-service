@@ -6,7 +6,7 @@ describe("Main", function() {
   describe("#listContactForms", function() {
     it("should list the contact forms", function(done) {
       // Create a contact form to use during the test
-      const createContactFormParams = { 
+      const createContactFormParams = {
         name: "Hello World",
         ownerCognitoId: "IdentityID",
         ownerEmail: "daniel@druskin.co"
@@ -48,13 +48,13 @@ describe("Main", function() {
 
     it("should not return someone else's contact form", function(done) {
       // Create a contact form to use during the test
-      const createContactFormParams = { 
+      const createContactFormParams = {
         name: "Hello World",
         ownerCognitoId: "IdentityID",
         ownerEmail: "daniel@druskin.co"
       };
 
-      Helper.Application.models.ContactForm.create(createContactFormParams).then(function(newContactForm) {
+      Helper.Application.models.ContactForm.create(createContactFormParams).then(function() {
         // Fetch contact forms with a different identity
         const event = {
           "context": {

@@ -1,4 +1,4 @@
-gulp lint &&
+node_modules/eslint/bin/eslint.js . --ignore-pattern node_modules &&
   gulp delete_build_config_file &&
   gulp copy_build_config_file --env=test &&
   node_modules/.bin/mocha test/*
