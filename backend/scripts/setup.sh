@@ -4,6 +4,7 @@ set -o pipefail
 
 # Setup
 node_modules/eslint/bin/eslint.js . --ignore-pattern node_modules &&
+  node_modules/eslint/bin/eslint.js ../common &&
   gulp setup_before_initial_deploy &&
   echo dev | sh scripts/deploy.sh &&
   echo prod | sh scripts/deploy.sh &&

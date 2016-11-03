@@ -7,6 +7,7 @@ export AWS_SERVICES=cognitoidentity
 
 # Build
 node_modules/eslint/bin/eslint.js . --ignore-pattern node_modules --ignore-pattern vendor --ignore-pattern dist &&
+  node_modules/eslint/bin/eslint.js ../common &&
   gulp delete_existing_build &&
   gulp setup_folder_structure &&
   # gulp lint &&
