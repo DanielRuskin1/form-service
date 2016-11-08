@@ -7,17 +7,6 @@
       "Statement": [
         {
           "Effect": "Allow",
-          "Action": [
-            "mobileanalytics:PutEvents",
-            "cognito-sync:*",
-            "cognito-identity:*"
-          ],
-          "Resource": [
-            "*"
-          ]
-        },
-        {
-          "Effect": "Allow",
           "Action": "execute-api:Invoke",
           "Resource": [
             {

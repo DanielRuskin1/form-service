@@ -2,14 +2,8 @@
   "CognitoAuthRole": {
     "$ref": "cognito/auth_role.json"
   },
-  "CognitoUnAuthRole": {
-    "$ref": "cognito/unauth_role.json"
-  },
   "CognitoAuthPolicy": {
     "$ref": "cognito/auth_policy.json"
-  },
-  "CognitoUnAuthPolicy": {
-    "$ref": "cognito/unauth_policy.json"
   },
   "ProcessMessagesFunctionLambdaFunction": {
     "$ref": "functions/process_messages.json"
