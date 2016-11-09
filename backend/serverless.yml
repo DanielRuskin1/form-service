@@ -4,13 +4,6 @@ provider:
   name: aws
   stage: dev
   region: us-west-2
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - "ec2:CreateNetworkInterface"
-        - "ec2:DescribeNetworkInterfaces"
-        - "ec2:DeleteNetworkInterface"
-      Resource: "*"
   stackPolicy:
     - Effect: Allow
       Principal: "*"

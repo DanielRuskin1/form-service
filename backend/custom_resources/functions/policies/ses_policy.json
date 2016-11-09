@@ -1,0 +1,68 @@
+{
+  "Type": "AWS::IAM::Policy",
+  "Properties": {
+    "PolicyName": "LambdaSESPolicy",
+    "PolicyDocument": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "logs:CreateLogGroup",
+          "Resource": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:logs:us-west-2:",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":formservice*"
+              ]
+            ]
+          }
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
+          ],
+          "Resource": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:logs:us-west-2:",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":log-group:/aws/lambda/formservice*:*"
+              ]
+            ]
+          },
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "ec2:CreateNetworkInterface",
+            "ec2:DescribeNetworkInterfaces",
+            "ec2:DeleteNetworkInterface"
+          ],
+          "Resource": "*"
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "ses:SendEmail",
+            "ses:SendRawEmail"
+          ],
+          "Resource":"*"
+        }
+      ]
+    },
+    "Roles": [
+      {
+        "Ref":"LambdaSESRole"
+      }
+    ]
+  }
+}

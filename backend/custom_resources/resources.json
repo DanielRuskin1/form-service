@@ -8,6 +8,21 @@
   "ProcessMessagesFunctionLambdaFunction": {
     "$ref": "functions/process_messages.json"
   },
+  "CreateContactFormFunctionLambdaFunction": {
+    "$ref": "functions/all_other_functions.json"
+  },
+  "DeleteContactFormFunctionLambdaFunction": {
+    "$ref": "functions/all_other_functions.json"
+  },
+  "ListContactFormsFunctionLambdaFunction": {
+    "$ref": "functions/all_other_functions.json"
+  },
+  "SendMessageFunctionLambdaFunction": {
+    "$ref": "functions/all_other_functions.json"
+  },
+  "SetupDatabaseFunctionLambdaFunction": {
+    "$ref": "functions/all_other_functions.json"
+  },
   "ApiGatewayMethodContactformsPost": {
     "$ref": "methods/create_contact_form.json"
   },
@@ -27,10 +42,16 @@
     "$ref": "rds/subnet_groups/subnet_group.json"
   },
   "LambdaSESRole": {
-    "$ref": "ses/role.json"
+    "$ref": "functions/roles/ses_role.json"
   },
   "LambdaSESPolicy": {
-    "$ref": "ses/policy.json"
+    "$ref": "functions/policies/ses_policy.json"
+  },
+  "LambdaNormalRole": {
+    "$ref": "functions/roles/normal_role.json"
+  },
+  "LambdaNormalPolicy": {
+    "$ref": "functions/policies/normal_policy.json"
   },
   "DatabaseAndFunctionVPC": {
     "$ref": "vpc/database_and_function_vpc.json"
