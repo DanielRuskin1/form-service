@@ -57,9 +57,8 @@ Update your Cognito configurations with the below steps:
 
 1. Navigate [here](https://us-west-2.console.aws.amazon.com/cognito/federated) and select your identity pool for the appropriate environment.
 2. Hit the `Edit Identity Pool` button in the upper-right corner.
-3. Under `Unauthenticated role`, select the role beginning with `form-service-dev-CognitoUnAuthRole` (or `form-service-prod-CognitoUnAuthRole` if deploying to production).
-4. Under `Authenticated role`, select the role beginning with `form-service-dev-CognitoAuthRole` (or `form-service-prod-CognitoAuthRole` if deploying to production).
-5. Save your changes
+3. Under `Authenticated role`, select the role beginning with `form-service-dev-CognitoAuthRole` (or `form-service-prod-CognitoAuthRole` if deploying to production).
+4. Save your changes
 
 #### Step 3: Setup the Database
 
